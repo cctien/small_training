@@ -1,3 +1,6 @@
+"""
+Adapted from https://github.com/pytorch/examples/tree/main/mnist
+"""
 import argparse
 import torch
 import torch.nn as nn
@@ -97,16 +100,16 @@ def main():
     parser.add_argument(
         '--test-batch-size',
         type=int,
-        default=1000,
+        default=64,
         metavar='N',
-        help='input batch size for testing (default: 1000)'
+        help='input batch size for testing (default: 64)'
         )
     parser.add_argument(
         '--epochs',
         type=int,
-        default=14,
+        default=4,
         metavar='N',
-        help='number of epochs to train (default: 14)'
+        help='number of epochs to train (default: 4)'
         )
     parser.add_argument(
         '--lr',
@@ -173,15 +176,14 @@ def main():
     transform = transforms.Compose([
         transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
         ])
+
     if args.download_data_only:
         dataset1 = datasets.MNIST('data', train=True, download=True, transform=transform)
         dataset2 = datasets.MNIST('data', train=False, transform=transform)
-        
         return
 
     dataset1 = datasets.MNIST('data', train=True, transform=transform)
     dataset2 = datasets.MNIST('data', train=False, transform=transform)
-
 
     train_loader = torch.utils.data.DataLoader(dataset1, **train_kwargs)
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
