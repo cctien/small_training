@@ -107,9 +107,9 @@ def main():
     parser.add_argument(
         '--epochs',
         type=int,
-        default=4,
+        default=2,
         metavar='N',
-        help='number of epochs to train (default: 4)'
+        help='number of epochs to train (default: 2)'
         )
     parser.add_argument(
         '--lr',
@@ -178,12 +178,12 @@ def main():
         ])
 
     if args.download_data_only:
-        dataset1 = datasets.MNIST('data', train=True, download=True, transform=transform)
-        dataset2 = datasets.MNIST('data', train=False, transform=transform)
+        dataset1 = datasets.MNIST('/content/data', train=True, download=True, transform=transform)
+        dataset2 = datasets.MNIST('/content/data', train=False, transform=transform)
         return
 
-    dataset1 = datasets.MNIST('data', train=True, transform=transform)
-    dataset2 = datasets.MNIST('data', train=False, transform=transform)
+    dataset1 = datasets.MNIST('/content/data', train=True, transform=transform)
+    dataset2 = datasets.MNIST('/content/data', train=False, transform=transform)
 
     train_loader = torch.utils.data.DataLoader(dataset1, **train_kwargs)
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
