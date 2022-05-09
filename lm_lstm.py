@@ -1,5 +1,4 @@
 import argparse
-from re import sub
 import subprocess
 
 import torch
